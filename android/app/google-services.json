@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "378098282089",
+    "project_id": "homear-4ccea",
+    "storage_bucket": "homear-4ccea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378098282089:android:28d5ef8e4311e11311fcf8",
+        "android_client_info": {
+          "package_name": "com.example.arapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378098282089-he0875vivc3cbl08hgbtprq2gdg157r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeuTofY0tY_dbGpUY2wYkkD_lJNNw6sjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378098282089-he0875vivc3cbl08hgbtprq2gdg157r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
