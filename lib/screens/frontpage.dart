@@ -13,6 +13,7 @@ class _FrontPageState extends State<FrontPage> {
   final _auth = FirebaseAuth.instance;
   String? model;
   var _currentindex;
+
   @override
   void initState() {
     super.initState();
@@ -66,6 +67,8 @@ class _FrontPageState extends State<FrontPage> {
                       return GestureDetector(
                         onTap: () async {
                           _currentindex = index;
+                          print(
+                              "network image ${userSnapshot[index]["image"]}");
                           print("index ${userSnapshot[index].data()}");
                           final data = userSnapshot[index].data();
                           if (data is Map<String, dynamic>) {
@@ -103,16 +106,18 @@ class _FrontPageState extends State<FrontPage> {
                             // width:
                             //     (MediaQuery.of(context).size.width * 0.5) - 15,
                             // height: 150,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
+                              color: Colors.white,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
+                                  const BorderRadius.all(Radius.circular(15.0)),
                               image: DecorationImage(
-                                image: NetworkImage(
-                                    "https://imgmedia.lbb.in/media/2022/05/62736afa42d07e2c4a83ea34_1651731194487.jpg"),
+                                image:
+                                    NetworkImage(userSnapshot[index]["image"]),
                                 fit: BoxFit.cover,
                               ),
                             ),
+
                             child: Container(
                               decoration: const BoxDecoration(
                                 shape: BoxShape.rectangle,
