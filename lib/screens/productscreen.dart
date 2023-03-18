@@ -294,7 +294,24 @@ class _ProductScreenState extends State<ProductScreen> {
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
                                   side: const BorderSide(color: Colors.teal)))),
-                      onPressed: () {},
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Container(
+                            decoration:
+                                BoxDecoration(color: Colors.amber.shade800),
+                            child: Text(
+                              "Successfully added to cart",
+                              style: GoogleFonts.cantoraOne(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 1),
+                            ),
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.amber.shade800,
+                        ));
+                      },
                       child: Row(
                         children: [
                           const Center(

@@ -20,7 +20,7 @@ const kTextFieldDecoration = InputDecoration(
 );
 
 class SignIn extends StatefulWidget {
-  SignIn({Key? key}) : super(key: key);
+  const SignIn({Key? key}) : super(key: key);
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -36,7 +36,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 30.0,
         ),
         child: Column(
@@ -45,7 +45,7 @@ class _SignInState extends State<SignIn> {
           children: <Widget>[
             Text("Hi,",
                 style: GoogleFonts.roboto(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w900,
                   fontSize: 30,
@@ -53,7 +53,7 @@ class _SignInState extends State<SignIn> {
                 ))),
             Text("Sign Up",
                 style: GoogleFonts.roboto(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w900,
                   fontSize: 30,
@@ -67,7 +67,7 @@ class _SignInState extends State<SignIn> {
                 Text(
                   "Already have an account /",
                   style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 16,
                           fontWeight: FontWeight.w800,
@@ -80,8 +80,8 @@ class _SignInState extends State<SignIn> {
                     child: Text(
                       "Login",
                       style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                              color: Colors.deepPurple.shade400,
+                          textStyle: const TextStyle(
+                              color: Colors.teal,
                               fontSize: 16,
                               fontWeight: FontWeight.w800)),
                     ))
@@ -99,7 +99,7 @@ class _SignInState extends State<SignIn> {
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hoverColor: Colors.deepPurple.shade400,
+                  hoverColor: Colors.teal,
                   fillColor: Colors.black12,
                   filled: true,
 
@@ -110,16 +110,16 @@ class _SignInState extends State<SignIn> {
                   //     ),
                   //     borderRadius: BorderRadius.circular(9)),
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.deepPurple.shade400,
+                      borderSide: const BorderSide(
+                        color: Colors.teal,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(9)),
                   hintText: 'Email',
                   alignLabelWithHint: true,
-                  label: Icon(
+                  label: const Icon(
                     Icons.mail,
-                    color: Colors.deepPurple.shade400,
+                    color: Colors.teal,
                   ),
                   // labelText: "Email"
                 )),
@@ -135,7 +135,7 @@ class _SignInState extends State<SignIn> {
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hoverColor: Colors.deepPurple.shade400,
+                  hoverColor: Colors.teal,
                   fillColor: Colors.black12,
                   filled: true,
 
@@ -146,8 +146,8 @@ class _SignInState extends State<SignIn> {
                   //     ),
                   //     borderRadius: BorderRadius.circular(9)),
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.deepPurple.shade400,
+                      borderSide: const BorderSide(
+                        color: Colors.teal,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(9)),
@@ -160,9 +160,9 @@ class _SignInState extends State<SignIn> {
                   //   fontSize: 20,
                   //   letterSpacing: 1.9,
                   // )
-                  label: Icon(
+                  label: const Icon(
                     Icons.password,
-                    color: Colors.deepPurple.shade400,
+                    color: Colors.teal,
                   ),
                   // labelText: "Email"
                 )),
@@ -182,7 +182,7 @@ class _SignInState extends State<SignIn> {
                       behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.red,
                       content: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.red,
                         ),
                         child: Text(error[1]),
@@ -193,15 +193,15 @@ class _SignInState extends State<SignIn> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                  backgroundColor: Colors.deepPurple.shade400,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 15.0),
+                  backgroundColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0))),
               child: Text(
                 "Register",
                 style: GoogleFonts.roboto(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         letterSpacing: 1.3,

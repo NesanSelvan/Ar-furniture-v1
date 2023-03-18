@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (_currentindex == 0)
                     const FrontPage()
                   else if (_currentindex == 1)
-                    CategoryPage()
+                    CategoryPage(),
                 ],
               ),
             )),

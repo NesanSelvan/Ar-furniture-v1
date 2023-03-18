@@ -19,7 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 //     ));
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: SafeArea(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
@@ -45,24 +45,25 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: Container(
+                  child: SizedBox(
                     height: 250,
                     width: MediaQuery.of(context).size.width,
                     //color: Colors.red[50],
-                    child: CustomPaint(
+                    child: const CustomPaint(
                         //painter: CurvedPainter(),
                         ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 50),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Text("Hey,",
                           style: GoogleFonts.nunitoSans(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w900,
                             fontSize: 30,
@@ -70,13 +71,13 @@ class _LoginPageState extends State<LoginPage> {
                           ))),
                       Text("Login Now",
                           style: GoogleFonts.nunitoSans(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w900,
                             fontSize: 30,
                             letterSpacing: 1.9,
                           ))),
-                      SizedBox(
+                      const SizedBox(
                         height: 0.02,
                       ),
                       Row(
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                           Text(
                             "If you're new /",
                             style: GoogleFonts.roboto(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                     color: Colors.black54,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w800,
@@ -98,8 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 "Create New",
                                 style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                        color: Colors.deepPurple.shade400,
+                                    textStyle: const TextStyle(
+                                        color: Colors.teal,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w800)),
                               ))
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hoverColor: Colors.deepPurple.shade400,
+                            hoverColor: Colors.teal,
                             fillColor: Colors.black12,
                             filled: true,
 
@@ -128,16 +129,16 @@ class _LoginPageState extends State<LoginPage> {
                             //     ),
                             //     borderRadius: BorderRadius.circular(9)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.deepPurple.shade400,
+                                borderSide: const BorderSide(
+                                  color: Colors.teal,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(9)),
                             hintText: 'Email',
                             alignLabelWithHint: true,
-                            label: Icon(
+                            label: const Icon(
                               Icons.mail,
-                              color: Colors.deepPurple.shade400,
+                              color: Colors.teal,
                             ),
                             // labelText: "Email"
                           )),
@@ -154,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             fillColor: Colors.black12, filled: true,
-                            hoverColor: Colors.deepPurple.shade400,
+                            hoverColor: Colors.teal,
                             // enabledBorder: OutlineInputBorder(
                             //   borderSide: BorderSide(
                             //     color: Colors.grey,
@@ -163,18 +164,18 @@ class _LoginPageState extends State<LoginPage> {
                             //   borderRadius: BorderRadius.circular(9),
                             // ),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.deepPurple.shade400,
+                                borderSide: const BorderSide(
+                                  color: Colors.teal,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(9)),
-                            label: Icon(
+                            label: const Icon(
                               Icons.password_sharp,
-                              color: Colors.deepPurple.shade400,
+                              color: Colors.teal,
                             ),
                             hintText: 'Password',
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 24.0,
                       ),
                       ElevatedButton(
@@ -191,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                                 behavior: SnackBarBehavior.floating,
                                 backgroundColor: Colors.red,
                                 content: Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Colors.red,
                                   ),
                                   child: Text(error[1]),
@@ -202,15 +203,15 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 20.0, vertical: 15.0),
-                            backgroundColor: Colors.deepPurple.shade400,
+                            backgroundColor: Colors.teal,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0))),
                         child: Text(
                           "Login",
                           style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w800)),
@@ -234,42 +235,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
-
-class CurvedPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // var center = size / 2;
-    // var paint = Paint()
-    //   ..color = Colors.red
-    //   ..strokeWidth = 10.0;
-
-    // canvas.drawLine(
-    //     Offset(0, center.height), Offset(size.width, center.height), paint);
-    var paint = Paint()
-      ..color = Colors.deepPurple[400]!
-      ..strokeWidth = 5
-      ..style = PaintingStyle.fill
-      ..strokeCap = StrokeCap.round;
-
-    var path = Path();
-    // path.lineTo(0, 0);
-    // path.lineTo(size.width, 0);
-    // path.lineTo(size.width, 0);
-    // path.lineTo(0, size.height / 1.8);
-    path.lineTo(0, size.height / 1.8);
-    path.lineTo(size.width, 0);
-    path.lineTo(size.width, size.height / 1.8);
-    path.lineTo(0, size.height / 1.1);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
-
-@override
-bool shouldRepaint(CustomPainter oldDelegate) {
-  return true;
 }
