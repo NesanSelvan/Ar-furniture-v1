@@ -407,9 +407,7 @@ class _ArScreenState extends State<ArScreen> {
       // Add note to anchor
       var newNode = ARNode(
           type: NodeType.webGLB,
-          uri:
-              //  widget.url,
-              widget.finalpath,
+          uri: widget.finalpath,
           // "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF-Binary/Duck.glb",
           scale: Vector3(0.65, 0.65, 0.65),
           position: Vector3(0.0, 0.0, 0.0),

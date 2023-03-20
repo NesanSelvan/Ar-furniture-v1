@@ -47,6 +47,7 @@ dependencies:
   http: ^0.13.5
   ar_flutter_plugin: ^0.7.3
   carousel_slider: ^4.2.1
+  firebase_crashlytics: ^3.0.17
 
 dev_dependencies:
   flutter_test:
