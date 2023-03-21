@@ -1,23 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-const kTextFieldDecoration = InputDecoration(
-  hintText: 'Enter a value',
-  hintStyle: TextStyle(color: Colors.grey),
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-);
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -26,8 +10,25 @@ class SignIn extends StatefulWidget {
   State<SignIn> createState() => _SignInState();
 }
 
+class database {
+  Future<String?> adduser({
+    required String fullname,
+    required String email,
+  }) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection("users");
+      await users.doc(email).set({'full_name': fullname, "email": email});
+    } catch (e) {
+      return "error loading user";
+    }
+    return null;
+  }
+}
+
 class _SignInState extends State<SignIn> {
   late String email;
+  late String name;
   final _auth = FirebaseAuth.instance;
   late String password;
 
@@ -89,6 +90,43 @@ class _SignInState extends State<SignIn> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.005,
+            ),
+            TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  name = value;
+                  //Do something with the user input.
+                },
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hoverColor: Colors.teal,
+                  fillColor: Colors.black12,
+                  filled: true,
+
+                  // enabledBorder: OutlineInputBorder(
+                  //     borderSide: BorderSide(
+                  //       color: Colors.grey,
+                  //       width: 2.0,
+                  //     ),
+                  //     borderRadius: BorderRadius.circular(9)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.teal,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(9)),
+                  // labelText: "Enter Name",
+                  hintText: 'Name',
+                  alignLabelWithHint: true,
+                  label: const Icon(
+                    Icons.abc,
+                    color: Colors.teal,
+                  ),
+                  // labelText: "Email"
+                )),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.019,
             ),
             TextField(
                 keyboardType: TextInputType.emailAddress,
@@ -175,6 +213,7 @@ class _SignInState extends State<SignIn> {
                   final newUser = await _auth.createUserWithEmailAndPassword(
                       email: email, password: password);
                   Navigator.pushReplacementNamed(context, 'home_screen');
+                  database().adduser(fullname: name, email: email);
                 } catch (e) {
                   var error = e.toString().split(']');
                   ScaffoldMessenger.of(context).showSnackBar(

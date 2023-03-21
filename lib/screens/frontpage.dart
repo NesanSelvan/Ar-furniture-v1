@@ -152,6 +152,7 @@ class _FrontPageState extends State<FrontPage> {
                         print("network image ${userSnapshot[index]["image"]}");
                         print("index ${userSnapshot[index].data()}");
                         final data = userSnapshot[index].data();
+                        final dataid = userSnapshot[index].id;
                         if (data is Map<String, dynamic>) {
                           if (data.containsKey('url')) {
                             await Navigator.pushNamed(context, "product_screen",
@@ -160,6 +161,7 @@ class _FrontPageState extends State<FrontPage> {
                                   "productname": data["name"],
                                   "productrate": data["rate"],
                                   "description": data["description"],
+                                  "docid": dataid
                                 });
                           }
                         }

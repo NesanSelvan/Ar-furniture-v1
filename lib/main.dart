@@ -1,4 +1,5 @@
 import 'package:arapp/screens/ar_screen.dart';
+import 'package:arapp/screens/favourites.dart';
 import 'package:arapp/screens/homescreen.dart';
 import 'package:arapp/screens/loginpage.dart';
 import 'package:arapp/screens/productscreen.dart';
@@ -33,10 +34,13 @@ class MyApp extends StatelessWidget {
         late Widget currentScreen;
         switch (settings.name) {
           case 'registration_screen':
-            currentScreen = SignIn();
+            currentScreen = const SignIn();
             break;
           case 'login_screen':
-            currentScreen = LoginPage();
+            currentScreen = const LoginPage();
+            break;
+          case 'favourites_screen':
+            currentScreen = const FavouritesScreen();
             break;
           case 'home_screen':
             currentScreen = const HomeScreen();
@@ -45,11 +49,11 @@ class MyApp extends StatelessWidget {
             final args = settings.arguments as Map<String, dynamic>;
 
             currentScreen = ProductScreen(
-              url: args["url"].toString(),
-              productname: args["productname"].toString(),
-              productrate: args["productrate"].toString(),
-              description: args["description"].toString(),
-            );
+                url: args["url"].toString(),
+                productname: args["productname"].toString(),
+                productrate: args["productrate"].toString(),
+                description: args["description"].toString(),
+                docid: args["docid"].toString());
             break;
           case 'ar_screen':
             final args = settings.arguments as Map<String, dynamic>;
@@ -67,7 +71,7 @@ class MyApp extends StatelessWidget {
             );
             break;
           default:
-            currentScreen = SignIn();
+            currentScreen = const SignIn();
             break;
         }
         return MaterialPageRoute(builder: (context) => currentScreen);

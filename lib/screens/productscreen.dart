@@ -2,6 +2,8 @@ import "dart:developer";
 import "dart:io";
 
 import "package:babylonjs_viewer/babylonjs_viewer.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:firebase_auth/firebase_auth.dart";
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
@@ -12,12 +14,14 @@ class ProductScreen extends StatefulWidget {
   final String productname;
   final String productrate;
   final String description;
+  final String docid;
   const ProductScreen(
       {Key? key,
       required this.url,
       required this.productname,
       required this.productrate,
-      required this.description})
+      required this.description,
+      required this.docid})
       : super(key: key);
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -74,10 +78,101 @@ class _ProductScreenState extends State<ProductScreen> {
     setState(() {});
   }
 
+  var email;
   @override
   void initState() {
+    final auth = FirebaseAuth.instance;
+    dynamic user = auth.currentUser;
+    email = user.email;
+    showdata(email: email, docid: widget.docid);
     super.initState();
     performInit();
+  }
+
+  Future<Object> showdata({required String email, required var docid}) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection("users");
+      List<String> allFav = [];
+      try {
+        final allData =
+            ((await users.doc(email).get()).data() as Map<String, dynamic>);
+        allFav = (allData['favourites'] as List).cast<String>();
+        log("allData: $allData $allFav");
+      } catch (e) {
+        log("allData Error: $e");
+      }
+      allFav.contains(docid) ? isfav = true : isfav = false;
+      setState(() {});
+      // await users.doc(email).update({
+      //   "favourites": allFav.contains(docid) ? allFav : [...allFav, docid]
+      // });
+      return isfav;
+    } catch (e) {
+      return "error loading user";
+    }
+  }
+
+  Future<String?> removefavourites(
+      {required String email, required var docid}) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection("users");
+      List<String> allFav = [];
+      try {
+        final allData =
+            ((await users.doc(email).get()).data() as Map<String, dynamic>);
+        allFav = (allData['favourites'] as List).cast<String>();
+        log("allData: $allData $allFav");
+      } catch (e) {
+        log("allData Error: $e");
+      }
+
+      await users.doc(email).update({
+        "favourites": allFav.contains(docid)
+            ? FieldValue.arrayRemove([docid])
+            : [...allFav]
+      });
+      return "success";
+    } catch (e) {
+      return "error loading user";
+    }
+  }
+
+  Future<String?> addfavourites(
+      {required String email, required var docid}) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection("users");
+      List<String> allFav = [];
+      try {
+        final allData =
+            ((await users.doc(email).get()).data() as Map<String, dynamic>);
+        allFav = (allData['favourites'] as List).cast<String>();
+        log("allData: $allData $allFav");
+      } catch (e) {
+        log("allData Error: $e");
+      }
+
+      await users.doc(email).update({
+        "favourites": allFav.contains(docid) ? allFav : [...allFav, docid]
+      });
+      return "success";
+    } catch (e) {
+      return "error loading user";
+    }
+  }
+
+  Future<String?> addcarts(
+      {required String email, required String docid}) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection("users");
+      await users.doc(email).update({"carts": docid});
+      return "success";
+    } catch (e) {
+      return "error loading user";
+    }
   }
 
   @override
@@ -295,6 +390,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   borderRadius: BorderRadius.circular(18.0),
                                   side: const BorderSide(color: Colors.teal)))),
                       onPressed: () {
+                        addcarts(email: email, docid: widget.docid);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Container(
                             decoration:
@@ -335,13 +431,15 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 IconButton(
                   onPressed: () {
+                    if (isfav) {
+                      print("fav");
+                      removefavourites(email: email, docid: widget.docid);
+                    } else {
+                      print("nofav");
+                      addfavourites(docid: widget.docid, email: email);
+                    }
                     setState(() {
-                      // if (isfav = false) {
-                      isfav = true;
-                      // }
-                      // else if (isfav = true) {
-                      //   isfav = false;
-                      // }
+                      isfav = !isfav;
                     });
                   },
                   icon: Icon(
