@@ -1,4 +1,5 @@
 import 'package:arapp/screens/ar_screen.dart';
+import 'package:arapp/screens/downscroll.dart';
 import 'package:arapp/screens/favourites.dart';
 import 'package:arapp/screens/homescreen.dart';
 import 'package:arapp/screens/loginpage.dart';
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
             break;
           case 'home_screen':
             currentScreen = const HomeScreen();
+            break;
+          case 'ar_design':
+            currentScreen = downscroll();
             break;
           case 'product_screen':
             final args = settings.arguments as Map<String, dynamic>;

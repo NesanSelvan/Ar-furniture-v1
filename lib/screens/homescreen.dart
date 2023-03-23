@@ -21,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var email;
   var username;
+  var startingletter;
+
   @override
   void initState() {
     final auth = FirebaseAuth.instance;
@@ -42,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final data = snapshot.data() as Map<String, dynamic>;
       username = data["full_name"];
       print("name $username");
+      startingletter = username[0];
     } catch (e) {
       return 'Error fetching user';
     }
@@ -49,9 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //using this function you can use the credentials of the user
-
   int _currentindex = 0;
-
+  bool isdrawer = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onPressed: () {
                         setState(() {
+                          isdrawer = false;
                           _currentindex = 0;
                         });
                       },
@@ -154,6 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: _currentindex == 2 ? Colors.black : Colors.white,
                       ),
                       onPressed: () {
+                        Navigator.pushNamed(context, "ar_design");
+
                         setState(() {
                           _currentindex = 2;
                         });
@@ -172,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: _currentindex == 3 ? Colors.black : Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, "ar_screen");
+                        // Navigator.pushNamed(context, "ar_screen");
                         setState(() {
                           _currentindex = 3;
                         });
@@ -190,9 +195,9 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            if (_currentindex == 0)
+            if (_currentindex == 0 && isdrawer == false)
               const FrontPage()
-            else if (_currentindex == 7)
+            else if (_currentindex == 7 && isdrawer)
               const FavouritesScreen(),
           ],
         ),
@@ -214,11 +219,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 accountEmail: Text(email.toString()),
                 currentAccountPictureSize: const Size.square(50),
-                currentAccountPicture: const CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 165, 255, 137),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: const Color.fromARGB(255, 165, 255, 137),
                   child: Text(
-                    "A",
-                    style: TextStyle(fontSize: 30.0, color: Colors.blue),
+                    startingletter ?? "A",
+                    style: const TextStyle(fontSize: 30.0, color: Colors.blue),
                   ), //Text
                 ), //circleAvatar
               ), //UserAccountDrawerHeader
@@ -228,7 +233,6 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text(' My Profile '),
               onTap: () {
                 Navigator.pop(context);
-                _currentindex == 6;
                 setState(() {});
               },
             ),
@@ -237,8 +241,10 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Faviourites'),
               onTap: () {
                 Navigator.pop(context);
-                _currentindex == 7;
-                setState(() {});
+                setState(() {
+                  _currentindex = 7;
+                  isdrawer = true;
+                });
                 // Navigator.pushNamed(context, "favourites_screen");
                 // const FavouritesScreen();
               },
@@ -248,7 +254,6 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Offers'),
               onTap: () {
                 Navigator.pop(context);
-                _currentindex == 8;
                 setState(() {});
               },
             ),
@@ -257,7 +262,6 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Notifications'),
               onTap: () {
                 Navigator.pop(context);
-                _currentindex == 9;
                 setState(() {});
               },
             ),
