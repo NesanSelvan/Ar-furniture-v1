@@ -17,7 +17,7 @@ class _AllProductState extends State<AllProduct> {
   final _auth = FirebaseAuth.instance;
   String? model;
   var _currentindex;
-
+  var selectedindex;
   @override
   void initState() {
     super.initState();
@@ -72,7 +72,9 @@ class _AllProductState extends State<AllProduct> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                      color: Colors.teal.withOpacity(0.2))),
+                                      color: selectedindex == index
+                                          ? Colors.teal
+                                          : Colors.teal.withOpacity(0.2))),
                               child: Row(
                                 // mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -179,11 +181,11 @@ class _AllProductState extends State<AllProduct> {
                                               ),
                                             ),
                                           ),
-                                          IconButton(
-                                            onPressed: () {},
-                                            icon: const Icon(Icons.favorite),
-                                            color: Colors.red,
-                                          )
+                                          // IconButton(
+                                          //   onPressed: () {},
+                                          //   icon: const Icon(Icons.favorite),
+                                          //   color: Colors.red,
+                                          // )
                                         ],
                                       ),
                                     ),
@@ -196,6 +198,9 @@ class _AllProductState extends State<AllProduct> {
                             ),
                           ),
                           onTap: () => {
+                                setState(() {}),
+                                selectedindex = index,
+                                print("indexof${userSnapshot[index]["name"]}"),
                                 ArDesign.url = userSnapshot[index]["url"],
                                 print("link${ArDesign.url}"),
                                 // widget.url =  userSnapshot[index]["url"]
