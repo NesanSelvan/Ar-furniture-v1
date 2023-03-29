@@ -84,12 +84,13 @@ class _ProductScreenState extends State<ProductScreen> {
     final auth = FirebaseAuth.instance;
     dynamic user = auth.currentUser;
     email = user.email;
-    showdata(email: email, docid: widget.docid);
+    showfavdata(email: email, docid: widget.docid);
     super.initState();
     performInit();
   }
 
-  Future<Object> showdata({required String email, required var docid}) async {
+  Future<Object> showfavdata(
+      {required String email, required var docid}) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection("users");
@@ -168,7 +169,19 @@ class _ProductScreenState extends State<ProductScreen> {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection("users");
-      await users.doc(email).update({"carts": docid});
+      List<String> allcarts = [];
+      try {
+        final allData =
+            ((await users.doc(email).get()).data() as Map<String, dynamic>);
+        allcarts = (allData['carts'] as List).cast<String>();
+        log("allData: $allData $allcarts");
+      } catch (e) {
+        log("allData Error: $e");
+      }
+
+      await users.doc(email).update({
+        "carts": allcarts.contains(docid) ? allcarts : [...allcarts, docid]
+      });
       return "success";
     } catch (e) {
       return "error loading user";

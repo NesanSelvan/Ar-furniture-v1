@@ -1,3 +1,4 @@
+import 'package:arapp/screens/ar_design.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -195,6 +196,8 @@ class _AllProductState extends State<AllProduct> {
                             ),
                           ),
                           onTap: () => {
+                                ArDesign.url = userSnapshot[index]["url"],
+                                print("link${ArDesign.url}"),
                                 // widget.url =  userSnapshot[index]["url"]
                               });
                     },

@@ -129,7 +129,7 @@ class _FrontPageState extends State<FrontPage> {
                 return const Text("no data");
               }
               var size = MediaQuery.of(context).size;
-              double itemHeight = MediaQuery.of(context).size.height * 0.265;
+              double itemHeight = 240;
               final double itemWidth = size.width / 2;
               return Padding(
                 padding:
@@ -188,7 +188,7 @@ class _FrontPageState extends State<FrontPage> {
                           // height: 900,
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
-                            // color: Colors.red,
+                            // color: Colors.yellow,
                             border:
                                 Border.all(color: Colors.teal.withOpacity(0.3)),
                             borderRadius:
@@ -203,8 +203,7 @@ class _FrontPageState extends State<FrontPage> {
                             children: [
                               ClipRect(
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.148,
+                                  height: 130,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     color: Colors.grey.shade100,
@@ -222,10 +221,9 @@ class _FrontPageState extends State<FrontPage> {
                                 ),
                               ),
                               Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.074,
+                                // height: 72,
                                 decoration: const BoxDecoration(
-                                    color: Colors.white,
+                                    // color: Colors.red,
                                     shape: BoxShape.rectangle,
                                     // border: Border.all(
                                     // color: Colors.teal.withOpacity(0.3),
@@ -270,8 +268,9 @@ class _FrontPageState extends State<FrontPage> {
                                         alignment: Alignment.bottomLeft,
                                         child: Text(
                                           userSnapshot[index]["name"],
+                                          overflow: TextOverflow.ellipsis,
                                           style: GoogleFonts.poppins(
-                                              fontSize: 18,
+                                              fontSize: 19,
                                               color: Colors.teal,
                                               fontWeight: FontWeight.bold),
                                         ),

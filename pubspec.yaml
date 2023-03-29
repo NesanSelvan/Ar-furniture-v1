@@ -81,6 +81,7 @@ flutter:
     - assets/home.png
     - assets/settings.png
     - assets/cart.png
+    - assets/ar.png
     - assets/untitled4.glb
     - assets/earth.jpg
     - assets/test.obj

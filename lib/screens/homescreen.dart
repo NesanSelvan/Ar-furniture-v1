@@ -1,3 +1,5 @@
+import 'package:arapp/screens/cart_screen.dart';
+import 'package:arapp/screens/categorypage.dart';
 import 'package:arapp/screens/favourites.dart';
 import 'package:arapp/screens/frontpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -82,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () {
               setState(() {
+                // CartScreen();
                 _currentindex = 5;
               });
             },
@@ -152,8 +155,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 3),
                     child: IconButton(
-                      icon: Icon(
-                        Icons.card_giftcard_outlined,
+                      icon: Image.asset(
+                        "assets/ar.png",
+                        height: 25,
+                        width: 20,
                         color: _currentindex == 2 ? Colors.black : Colors.white,
                       ),
                       onPressed: () {
@@ -194,11 +199,15 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
-          children: [
+          children: <Widget>[
             if (_currentindex == 0 && isdrawer == false)
               const FrontPage()
             else if (_currentindex == 7 && isdrawer)
-              const FavouritesScreen(),
+              const FavouritesScreen()
+            else if (_currentindex == 1 && isdrawer == false)
+              const CategoryPage()
+            else if (_currentindex == 5 && isdrawer == false)
+              const CartScreen()
           ],
         ),
       )),
