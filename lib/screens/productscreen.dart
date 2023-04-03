@@ -192,6 +192,9 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.teal,
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),

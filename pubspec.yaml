@@ -50,6 +50,7 @@ dependencies:
   firebase_crashlytics: ^3.0.17
   sliding_up_panel: ^2.0.0+1
   snapping_sheet: ^3.1.0
+  search_page: ^2.3.0
 
 dev_dependencies:
   flutter_test:

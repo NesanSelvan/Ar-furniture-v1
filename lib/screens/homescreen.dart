@@ -2,6 +2,7 @@ import 'package:arapp/screens/cart_screen.dart';
 import 'package:arapp/screens/categorypage.dart';
 import 'package:arapp/screens/favourites.dart';
 import 'package:arapp/screens/frontpage.dart';
+import 'package:arapp/screens/searchpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //using this function you can use the credentials of the user
   int _currentindex = 0;
   bool isdrawer = false;
+  bool issearch = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +65,23 @@ class _HomeScreenState extends State<HomeScreen> {
         iconTheme: const IconThemeData(color: Colors.teal),
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchPage()));
+              });
+              // showSearch(context: context,delegate: SearchPage(builder: , filter: , items: ))
+            },
+            icon: const Icon(Icons.search, color: Colors.teal, size: 25),
+          ),
+          // const SizedBox(
+          //   width: 20,
+          // )
+        ],
       ),
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
