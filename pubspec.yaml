@@ -51,6 +51,7 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   snapping_sheet: ^3.1.0
   search_page: ^2.3.0
+  progress_state_button: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +87,16 @@ flutter:
     - assets/untitled4.glb
     - assets/earth.jpg
     - assets/test.obj
+    - assets/sofa.png
+    - assets/armchair.png
+    - assets/dining.png
+    - assets/nightstand.png
+    - assets/cabbinet.png
+    - assets/bed.png
+    - assets/all.png
+    - assets/coffin.png
+    - assets/electronics.png
+    - assets/all1.png
 
 
   #   - images/a_dot_burr.jpeg

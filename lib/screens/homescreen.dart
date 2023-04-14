@@ -2,10 +2,12 @@ import 'package:arapp/screens/cart_screen.dart';
 import 'package:arapp/screens/categorypage.dart';
 import 'package:arapp/screens/favourites.dart';
 import 'package:arapp/screens/frontpage.dart';
+import 'package:arapp/screens/profilescreen.dart';
 import 'package:arapp/screens/searchpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 late User loggedinUser;
 
@@ -46,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final snapshot = await users.doc(email).get();
       final data = snapshot.data() as Map<String, dynamic>;
       username = data["full_name"];
+      setState(() {});
       print("name $username");
       startingletter = username[0];
     } catch (e) {
@@ -227,6 +230,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const CategoryPage()
             else if (_currentindex == 5 && isdrawer == false)
               const CartScreen()
+            else if (_currentindex == 3 && isdrawer == false)
+              const ProfileScreen()
           ],
         ),
       )),
@@ -248,25 +253,50 @@ class _HomeScreenState extends State<HomeScreen> {
                 accountEmail: Text(email.toString()),
                 currentAccountPictureSize: const Size.square(50),
                 currentAccountPicture: CircleAvatar(
-                  backgroundColor: const Color.fromARGB(255, 165, 255, 137),
-                  child: Text(
-                    startingletter ?? "A",
-                    style: const TextStyle(fontSize: 30.0, color: Colors.blue),
-                  ), //Text
+                  backgroundColor: const Color.fromARGB(255, 255, 137, 137),
+                  backgroundImage: Image.network(
+                          "https://firebasestorage.googleapis.com/v0/b/homear-4ccea.appspot.com/o/designing-a-cartoon-avatar-removebg-preview-modified.png?alt=media&token=a576d761-7209-4c3a-b7df-b5feb97ffdb8")
+                      .image,
+                  // child: Text(
+                  //   startingletter ?? "A",
+                  //   style: const TextStyle(fontSize: 30.0, color: Colors.blue),
+                  // ), //Text
                 ), //circleAvatar
               ), //UserAccountDrawerHeader
             ), //DrawerHeader
             ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text(' My Profile '),
+              leading: const Icon(Icons.person, color: Colors.teal),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15,
+                color: Colors.teal,
+              ),
+              title: Text(
+                ' My Profile ',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {});
               },
             ),
             ListTile(
-              leading: const Icon(Icons.favorite_outlined),
-              title: const Text('Faviourites'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15,
+                color: Colors.teal,
+              ),
+              leading: const Icon(Icons.favorite_outlined, color: Colors.teal),
+              title: Text(
+                'Faviourites',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -278,31 +308,79 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.card_giftcard_outlined),
-              title: const Text('Offers'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15,
+                color: Colors.teal,
+              ),
+              leading:
+                  const Icon(Icons.card_giftcard_outlined, color: Colors.teal),
+              title: Text(
+                'Offers',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {});
               },
             ),
             ListTile(
-              leading: const Icon(Icons.notifications_on),
-              title: const Text('Notifications'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15,
+                color: Colors.teal,
+              ),
+              leading: const Icon(Icons.notifications_on, color: Colors.teal),
+              title: Text(
+                'Notifications',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {});
               },
             ),
             ListTile(
-              leading: const Icon(Icons.edit),
-              title: const Text(' Edit Profile '),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15,
+                color: Colors.teal,
+              ),
+              leading: const Icon(Icons.edit, color: Colors.teal),
+              title: Text(
+                ' Edit Profile ',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('LogOut'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15,
+                color: Colors.teal,
+              ),
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.teal,
+              ),
+              title: Text(
+                'LogOut',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pushReplacementNamed(context, "login_screen");
                 _signOut();

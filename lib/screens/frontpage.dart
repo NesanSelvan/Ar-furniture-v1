@@ -15,6 +15,8 @@ class _FrontPageState extends State<FrontPage> {
   final _auth = FirebaseAuth.instance;
   String? model;
   var _currentindex;
+  int selectedcategory = 0;
+  String? type;
 
   @override
   void initState() {
@@ -37,7 +39,7 @@ class _FrontPageState extends State<FrontPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         CarouselSlider(
           items: [
             //1st Image of Slider
@@ -118,8 +120,312 @@ class _FrontPageState extends State<FrontPage> {
             viewportFraction: 0.8,
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
+        //icon color ##8e96a1
+        //tealcolour #049888
+        SizedBox(
+          height: 70, // constrain height
+          child: ListView(scrollDirection: Axis.horizontal, children: <Widget>[
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      type = null;
+                      setState(() {});
+                      selectedcategory = 0;
+                    },
+                    icon: Image.asset(selectedcategory == 0
+                        ? "assets/all.png"
+                        : "assets/all1.png"),
+                  ),
+                  Text(
+                    "All",
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: selectedcategory == 0
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        type = "chair";
+                        selectedcategory = 1;
+                      });
+                    },
+                    icon: Image.asset(
+                      "assets/dining.png",
+                      color:
+                          selectedcategory == 1 ? Colors.teal.shade600 : null,
+                    ),
+                  ),
+                  Text(
+                    "Chair",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 1
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        type = "armchair";
+
+                        selectedcategory = 2;
+                      });
+                    },
+                    icon: Image.asset(
+                      "assets/armchair.png",
+                      color:
+                          selectedcategory == 2 ? Colors.teal.shade600 : null,
+                    ),
+                    iconSize: 20,
+                  ),
+                  Text(
+                    "Arm Chair",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 2
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          type = "sofa";
+
+                          selectedcategory = 3;
+                        });
+                      },
+                      icon: Image.asset(
+                        "assets/sofa.png",
+                        color:
+                            selectedcategory == 3 ? Colors.teal.shade600 : null,
+                      )),
+                  Text(
+                    "Sofa",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 3
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        type = "table";
+
+                        selectedcategory = 4;
+                      });
+                    },
+                    icon: Image.asset(
+                      "assets/nightstand.png",
+                      color:
+                          selectedcategory == 4 ? Colors.teal.shade600 : null,
+                    ),
+                  ),
+                  Text(
+                    "Table",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 4
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          type = "cabinet";
+                          selectedcategory = 5;
+                        });
+                      },
+                      icon: Image.asset(
+                        "assets/cabbinet.png",
+                        color:
+                            selectedcategory == 5 ? Colors.teal.shade600 : null,
+                      )),
+                  Text(
+                    "Cabinet",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 5
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          type = "bed";
+                          selectedcategory = 6;
+                        });
+                      },
+                      icon: Image.asset(
+                        "assets/bed.png",
+                        color:
+                            selectedcategory == 6 ? Colors.teal.shade600 : null,
+                      )),
+                  Text(
+                    "Bed",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 6
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          type = "coffin";
+                          selectedcategory = 7;
+                        });
+                      },
+                      icon: Image.asset(
+                        "assets/coffin.png",
+                        color:
+                            selectedcategory == 7 ? Colors.teal.shade600 : null,
+                      )),
+                  Text(
+                    "Coffin",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 7
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+            SizedBox(
+              width: 70,
+              // color: Colors.purple[400],
+              child: Center(
+                  child: Column(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          type = "electronics";
+                          selectedcategory = 8;
+                        });
+                      },
+                      icon: Image.asset(
+                        "assets/electronics.png",
+                        color:
+                            selectedcategory == 8 ? Colors.teal.shade600 : null,
+                      )),
+                  Text(
+                    "Electronics",
+                    style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                        color: selectedcategory == 8
+                            ? Colors.teal
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              )),
+            ),
+          ]),
+        ),
+
+        // Expanded(
+        //   child: ListView(
+        //     scrollDirection: Axis.horizontal,
+        //     // shrinkWrap: true,
+        //   ),
+        // ),
+        // 2F2E2E
         StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection("models").snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection("models")
+                .where("type", isEqualTo: type)
+                .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();

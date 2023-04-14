@@ -1,6 +1,7 @@
 import "dart:developer";
 import "dart:io";
 
+import "package:arapp/screens/buydialogbox.dart";
 import "package:babylonjs_viewer/babylonjs_viewer.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -188,13 +189,17 @@ class _ProductScreenState extends State<ProductScreen> {
     }
   }
 
+  bool isaddedcart = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.teal,
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_sharp)),
+        iconTheme: const IconThemeData(color: Colors.teal),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -311,6 +316,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.039,
@@ -323,6 +329,31 @@ class _ProductScreenState extends State<ProductScreen> {
                                 textStyle: const TextStyle(
                                     letterSpacing: 0.2, color: Colors.teal)),
                           ),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              if (isfav) {
+                                print("fav");
+                                removefavourites(
+                                    email: email, docid: widget.docid);
+                              } else {
+                                print("nofav");
+                                addfavourites(
+                                    docid: widget.docid, email: email);
+                              }
+                              setState(() {
+                                isfav = !isfav;
+                              });
+                            },
+                            icon: Icon(
+                              isfav ? Icons.favorite : Icons.favorite_border,
+                              size: 35,
+                            ),
+                            color: isfav ? Colors.red : Colors.grey.shade600,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.08,
+                          )
                         ],
                       ),
                       SizedBox(
@@ -399,14 +430,17 @@ class _ProductScreenState extends State<ProductScreen> {
                           foregroundColor:
                               MaterialStateProperty.all<Color>(Colors.white),
                           backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.teal),
-                          shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: const BorderSide(color: Colors.teal)))),
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: const BorderSide(
+                                          color: Colors.teal, width: 2)))),
                       onPressed: () {
                         addcarts(email: email, docid: widget.docid);
+                        setState(() {});
+                        isaddedcart = true;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Container(
                             decoration:
@@ -426,44 +460,73 @@ class _ProductScreenState extends State<ProductScreen> {
                       },
                       child: Row(
                         children: [
-                          const Center(
+                          Center(
                             child: Icon(
-                              Icons.shopify,
+                              isaddedcart
+                                  ? Icons.check_circle_outline_rounded
+                                  : Icons.shopping_cart_checkout,
                               size: 30,
+                              color: Colors.teal,
                             ),
                           ),
                           const SizedBox(
                             width: 5,
                           ),
                           Text(
-                            "Add To Cart",
+                            isaddedcart ? "Added To Cart" : "Add To Cart",
                             style: GoogleFonts.poppins(
+                                color: Colors.teal,
                                 fontWeight: FontWeight.bold,
                                 textStyle: const TextStyle(
-                                    fontSize: 20, letterSpacing: 0.2)),
+                                    fontSize: 18, letterSpacing: 0.2)),
                           )
                         ],
                       )),
                 ),
-                IconButton(
-                  onPressed: () {
-                    if (isfav) {
-                      print("fav");
-                      removefavourites(email: email, docid: widget.docid);
-                    } else {
-                      print("nofav");
-                      addfavourites(docid: widget.docid, email: email);
-                    }
-                    setState(() {
-                      isfav = !isfav;
-                    });
-                  },
-                  icon: Icon(
-                    isfav ? Icons.favorite : Icons.favorite_border,
-                    size: 35,
-                  ),
-                  color: isfav ? Colors.red : Colors.grey.shade600,
-                )
+                ElevatedButton(
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.all(15)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.teal),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side:
+                                        const BorderSide(color: Colors.teal)))),
+                    onPressed: () {
+                      BuyDialogBox.name = widget.productname;
+
+                      BuyDialogBox.rate = int.parse(widget.productrate);
+
+                      showDialog(
+                        context: context,
+                        builder: (_) => const BuyDialogBox(),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        const Center(
+                          child: Icon(
+                            Icons.shopify,
+                            size: 30,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Buy Now",
+                          style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                              textStyle: const TextStyle(
+                                  fontSize: 20, letterSpacing: 0.2)),
+                        )
+                      ],
+                    )),
               ],
             ),
           ),
