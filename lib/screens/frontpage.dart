@@ -170,7 +170,7 @@ class _FrontPageState extends State<FrontPage> {
                       });
                     },
                     icon: Image.asset(
-                      "assets/dining.png",
+                      "assets/chair.png",
                       color:
                           selectedcategory == 1 ? Colors.teal.shade600 : null,
                     ),
@@ -269,7 +269,7 @@ class _FrontPageState extends State<FrontPage> {
                       });
                     },
                     icon: Image.asset(
-                      "assets/nightstand.png",
+                      "assets/table.png",
                       color:
                           selectedcategory == 4 ? Colors.teal.shade600 : null,
                     ),
@@ -301,7 +301,7 @@ class _FrontPageState extends State<FrontPage> {
                         });
                       },
                       icon: Image.asset(
-                        "assets/cabbinet.png",
+                        "assets/cabinet.png",
                         color:
                             selectedcategory == 5 ? Colors.teal.shade600 : null,
                       )),
