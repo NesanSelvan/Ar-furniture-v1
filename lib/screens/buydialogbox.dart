@@ -1,3 +1,4 @@
+import 'package:arapp/screens/orderscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,7 +32,8 @@ class BuyDialogBoxState extends State<BuyDialogBox>
     controller.forward();
   }
 
-  int quantity = 0;
+  int quantity = 1;
+  int total = BuyDialogBox.rate;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -70,7 +72,7 @@ class BuyDialogBoxState extends State<BuyDialogBox>
                     height: 5,
                   ),
                   Text(
-                    "₹${BuyDialogBox.rate * quantity}",
+                    "₹${total = BuyDialogBox.rate * quantity}",
                     style: GoogleFonts.poppins(
                         fontSize: 25,
                         color: Colors.teal,
@@ -209,6 +211,13 @@ class BuyDialogBoxState extends State<BuyDialogBox>
                             ),
                             onPressed: () {
                               Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OrderScreen(
+                                            quantity: quantity.toString(),
+                                            total: total.toString(),
+                                          )));
                             },
                             child: Text(
                               "Confirm",
