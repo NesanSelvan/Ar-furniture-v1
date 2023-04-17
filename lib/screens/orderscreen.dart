@@ -4,7 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class OrderScreen extends StatefulWidget {
   String total;
   String quantity;
-  OrderScreen({Key? key, required this.total, required this.quantity})
+  String name;
+  String rate;
+  OrderScreen(
+      {Key? key,
+      required this.total,
+      required this.quantity,
+      required this.rate,
+      required this.name})
       : super(key: key);
 
   @override
@@ -235,6 +242,81 @@ class _OrderScreenState extends State<OrderScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
+                        "Item Name",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text(widget.name ?? "null",
+                            overflow: TextOverflow.fade,
+                            // overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16)),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Rate",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text("₹${widget.rate}" ?? "null",
+                            overflow: TextOverflow.fade,
+                            // overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                                color: Colors.teal,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16)),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Quantity",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text(widget.quantity ?? "null",
+                            overflow: TextOverflow.fade,
+                            // overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16)),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         "Subtotal",
                         style: GoogleFonts.poppins(
                             color: Colors.black87,
@@ -245,7 +327,7 @@ class _OrderScreenState extends State<OrderScreen> {
                         padding: const EdgeInsets.only(right: 20),
                         child: Text("₹${widget.total}",
                             style: GoogleFonts.poppins(
-                                color: Colors.black,
+                                color: Colors.teal,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16)),
                       )
@@ -268,7 +350,7 @@ class _OrderScreenState extends State<OrderScreen> {
                         padding: const EdgeInsets.only(right: 25),
                         child: Text("Free",
                             style: GoogleFonts.poppins(
-                                color: Colors.teal,
+                                color: Colors.black,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 13)),
                       )
@@ -291,7 +373,7 @@ class _OrderScreenState extends State<OrderScreen> {
                         padding: const EdgeInsets.only(right: 25),
                         child: Text("₹${widget.total}",
                             style: GoogleFonts.poppins(
-                                color: Colors.black,
+                                color: Colors.teal,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16)),
                       )

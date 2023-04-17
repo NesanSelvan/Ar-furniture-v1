@@ -215,9 +215,10 @@ class BuyDialogBoxState extends State<BuyDialogBox>
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => OrderScreen(
-                                            quantity: quantity.toString(),
-                                            total: total.toString(),
-                                          )));
+                                          quantity: quantity.toString(),
+                                          total: total.toString(),
+                                          name: BuyDialogBox.name,
+                                          rate: BuyDialogBox.rate.toString())));
                             },
                             child: Text(
                               "Confirm",
