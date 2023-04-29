@@ -22,7 +22,7 @@ flutter run
 https://user-images.githubusercontent.com/88973192/235292701-fc7bbed1-3682-4608-afa3-cc063f5b8d93.mp4
 
 
-### LOGIN 
+### Screenshots 
 <table>
   <tr>
     <td>login page</td>
@@ -42,5 +42,18 @@ https://user-images.githubusercontent.com/88973192/235292701-fc7bbed1-3682-4608-
   <tr>
     <td><img src="outputs/3.png" width=150 height=300></td>
     <td><img src="outputs/8.png" width=150 height=300></td>
+  </tr>
+ </table>
+
+### AR View 
+
+<table>
+  <tr>
+    <td>Single Object</td>
+     <td>Multiple Object</td>
+  </tr>
+  <tr>
+    <td><img src="outputs/7.png" width=150 height=300></td>
+    <td><img src="outputs/5.png" width=150 height=300></td>
   </tr>
  </table>
