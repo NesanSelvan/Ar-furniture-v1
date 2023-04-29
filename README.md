@@ -1,4 +1,4 @@
-# arapp
+# AR Furniture App
 
 A new Flutter project.
 
